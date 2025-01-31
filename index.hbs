@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Management</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Event Management</h1>
+
+    <h2>Create New Event</h2>
+    <form action="/create" method="POST">
+      <input type="text" name="eventName" placeholder="Event Name" required>
+      <input type="date" name="eventDate" required>
+      <input type="text" name="venue" placeholder="Venue" required>
+      <input type="number" name="price" placeholder="Price (in USD)" required>
+      <button type="submit">Create Event</button>
+    </form>
+
+    <h2>Upcoming Events</h2>
+    <ul>
+      {{#each events}}
+        <li>
+          <strong>{{eventName}}</strong> - {{eventDate}} <br>
+          <span><b>Venue:</b> {{venue}}</span> <br>
+          <span><b>Price:</b> ${{price}}</span> <br>
+          <form action="/delete/{{_id}}" method="POST" style="display:inline;">
+            <button type="submit">Delete</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+</body>
+</html>
